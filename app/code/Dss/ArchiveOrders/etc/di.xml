@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_ArchiveOrders
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Backend\Block\Widget\Context">
+        <plugin name="add_buttons_to_order_details" type="Dss\ArchiveOrders\Plugin\OrderButtons" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Block\Adminhtml\Order\View">
+        <plugin name="change_url_for_back_button" type="Dss\ArchiveOrders\Plugin\BackButton" sortOrder="1"/>
+    </type>
+    <type name="Magento\Sales\Controller\Adminhtml\Order\View">
+        <plugin name="add_label_to_archved_order" type="Dss\ArchiveOrders\Plugin\AddLabel" sortOrder="1"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\Reporting">
+        <plugin name="filter_sales_order_collection" type="Dss\ArchiveOrders\Plugin\FilterCollection" sortOrder="1"/>
+    </type>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="dss_archiveorders_archive_listing_data_source"
+                    xsi:type="string">Dss\ArchiveOrders\Model\ResourceModel\Archive\Grid\Collection</item>
+                <item name="dss_archiveorders_rules_listing_data_source"
+                    xsi:type="string">Dss\ArchiveOrders\Model\ResourceModel\Rules\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Dss\ArchiveOrders\Model\ResourceModel\Archive\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dss_archiveorders_order_archive</argument>
+            <argument name="eventPrefix" xsi:type="string">archiveorders_archive_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">archive_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Dss\ArchiveOrders\Model\ResourceModel\Archive</argument>
+        </arguments>
+    </type>
+    <type name="Dss\ArchiveOrders\Model\ResourceModel\Rules\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">dss_archiveorders_rules</argument>
+            <argument name="eventPrefix" xsi:type="string">archiveorders_rules_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rules_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Dss\ArchiveOrders\Model\ResourceModel\Rules</argument>
+        </arguments>
+    </type>
+    <preference for="Dss\ArchiveOrders\Api\Data\ArchiveInterface"
+        type="Dss\ArchiveOrders\Model\Archive" />
+    <preference for="Dss\ArchiveOrders\Api\ArchiveRepositoryInterface"
+        type="Dss\ArchiveOrders\Model\ArchiveRepository" />
+    <preference for="Dss\ArchiveOrders\Api\Data\RulesInterface"
+        type="Dss\ArchiveOrders\Model\Rules" />
+    <preference for="Dss\ArchiveOrders\Api\RulesRepositoryInterface"
+        type="Dss\ArchiveOrders\Model\RulesRepository" />
+</config>
