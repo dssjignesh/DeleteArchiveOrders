@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_ArchiveOrders
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Magento_Sales::sales" title="Sales" translate="title" sortOrder="20">
+                    <resource id="Magento_Sales::sales_operation" title="Operations" translate="title" sortOrder="10">
+                        <resource id="Magento_Sales::sales_order"  title="Orders" translate="title" sortOrder="10">
+                            <resource id="Magento_Sales::actions" title="Actions" translate="title" sortOrder="10">
+                                <resource id="Dss_ArchiveOrders::delete_action"
+                                    title="Delete" translate="title" sortOrder="10" />
+                                <resource id="Dss_ArchiveOrders::archive_action"
+                                    title="Archive" translate="title" sortOrder="20" />
+                                <resource id="Dss_ArchiveOrders::restore_action"
+                                    title="Restore" translate="title" sortOrder="30" />
+                            </resource>
+                        </resource>
+                        <resource id="Dss_ArchiveOrders::archive" title="Archived Orders"
+                            translate="title" sortOrder="20"/>
+                        </resource>
+                    </resource>
+                    <resource id="Magento_Backend::system">
+                        <resource id="Dss_ArchiveOrders::rules_index" title="Delete Orders by Dss"
+                            translate="title" sortOrder="90">
+                        <resource id="Dss_ArchiveOrders::rules" title="Automatic Rules"
+                            translate="title" sortOrder="10" />
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

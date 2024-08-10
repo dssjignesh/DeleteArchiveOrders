@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Digit Software Solutions.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ *
+ * @category  Dss
+ * @package   Dss_ArchiveOrders
+ * @author    Extension Team
+ * @copyright Copyright (c) 2024 Digit Software Solutions. ( https://digitsoftsol.com )
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Dss_ArchiveOrders::archived_orders"
+             title="Archived Orders"
+             translate="title"
+             module="Dss_ArchiveOrders"
+             parent="Magento_Sales::sales_operation"
+             sortOrder="11"
+             action="deleteorders/archiveorder/index"
+             resource="Dss_ArchiveOrders::archive"/>
+        <add id="Dss_ArchiveOrders::rules_index"
+             title="Delete Orders by Dss"
+             translate="title"
+             module="Dss_ArchiveOrders"
+             parent="Magento_Backend::system"
+             dependsOnModule="Magento_Backend"
+             sortOrder="90"
+             resource="Dss_ArchiveOrders::rules_index"/>
+        <add id="Dss_ArchiveOrders::rules"
+             toolTip="Dss Extension"
+             title="Automatic rules"
+             module="Dss_ArchiveOrders"
+             parent="Dss_ArchiveOrders::rules_index"
+             action="deleteorders/rules/index"
+             resource="Dss_ArchiveOrders::rules"/>
+    </menu>
+</config>
